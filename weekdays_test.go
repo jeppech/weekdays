@@ -10,7 +10,7 @@ func TestMergeWeekdays(t *testing.T) {
 	w = w.Set(w2)
 	w = w.Set(Monday)
 
-	if w.String() != "sun, mon, wed, thu, fri" {
+	if w.String() != "sun,mon,wed,thu,fri" {
 		t.Errorf("Unexpected string: %s", w.String())
 	}
 }

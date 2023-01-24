@@ -52,5 +52,5 @@ func (w Weekdays) String() string {
 	if w.IsSet(Saturday) {
 		ret = append(ret, "sat")
 	}
-	return strings.Join(ret, ", ")
+	return strings.Join(ret, ",")
 }
