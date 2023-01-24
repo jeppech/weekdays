@@ -2,13 +2,11 @@ package weekdays
 
 import "strings"
 
-type Weekday uint8
-
 // Weekdays represents a bitmask of weekdays, where bit 0 is Sunday
-type Weekdays Weekday
+type Weekdays uint8
 
 const (
-	Sunday Weekday = iota
+	Sunday Weekdays = 1 << iota
 	Monday
 	Tuesday
 	Wednesday
@@ -17,23 +15,17 @@ const (
 	Saturday
 )
 
-func (w Weekdays) Set(day Weekday) Weekdays {
-	w |= 1 << day
-	return w
+// Set sets the given weekday
+func (w Weekdays) Set(day Weekdays) Weekdays {
+	return w | day
 }
 
-func (w Weekdays) Unset(day Weekday) Weekdays {
-	w &= ^(1 << day)
-	return w
+func (w Weekdays) Unset(day Weekdays) Weekdays {
+	return w &^ day
 }
 
-func (w Weekdays) Merge(days Weekdays) Weekdays {
-	w |= days
-	return w
-}
-
-func (w Weekdays) IsSet(day Weekday) bool {
-	return w&(1<<day) != 0
+func (w Weekdays) IsSet(day Weekdays) bool {
+	return w&day != 0
 }
 
 func (w Weekdays) String() string {
